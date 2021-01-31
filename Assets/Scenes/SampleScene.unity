@@ -669,6 +669,8 @@ GameObject:
   - component: {fileID: 954879572}
   - component: {fileID: 954879570}
   - component: {fileID: 954879573}
+  - component: {fileID: 954879574}
+  - component: {fileID: 954879575}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -690,10 +692,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraContainer: {fileID: 1962944643}
   speed: 10
-  jumpSpeed: 12
-  gravity: 30
-  dashSpeed: 50
-  dashPushback: 200
 --- !u!4 &954879571
 Transform:
   m_ObjectHideFlags: 0
@@ -742,6 +740,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiveBox: {fileID: 0}
+--- !u!114 &954879574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954879569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd23f75889f794da6e395a84d4d2a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSpeed: 8
+  gravity: 20
+--- !u!114 &954879575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954879569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099c9c41f9322234bbe592a7a3c73215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 80
+  dashPushback: 200
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

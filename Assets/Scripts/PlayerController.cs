@@ -3,19 +3,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     private CharacterController characterController;
     public GameObject cameraContainer;
     public float speed = 10;
-    public float jumpSpeed = 8;
-    public float gravity = 20;
-    private float jumpStatus = 0;
-    private const int MAX_JUMPS = 2;
-    private int jumpsLeft = 0;
-    public float dashSpeed = 80;
-    public float dashPushback = 200;
-    private float dashStatus = 0;
-    private Vector3 dashDirection;
 
     private void Start()
     {
@@ -37,31 +27,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             movement -= transform.right;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            dashStatus = dashSpeed;
-            dashDirection = movement;
-        }
-        dashStatus -= dashPushback * Time.deltaTime;
-
-        if (dashStatus < 0)
-            dashStatus = 0;
-
-        if (characterController.isGrounded)
-        {
-            jumpStatus = 0;
-            jumpsLeft = MAX_JUMPS;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && (characterController.isGrounded || jumpsLeft > 0))
-        {
-            jumpsLeft--;
-            jumpStatus = jumpSpeed;
-        }
-
-        jumpStatus -= gravity * Time.deltaTime;
-
-        characterController.Move(movement.normalized * speed * Time.deltaTime + transform.up * jumpStatus * Time.deltaTime + dashDirection * dashStatus * Time.deltaTime);
+        characterController.Move(movement.normalized * speed * Time.deltaTime);
 
         transform.Rotate(transform.up, Input.GetAxis("Mouse X"));
 
