@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DashController : MonoBehaviour
 {
-    public float dashSpeed = 80;
+    public float dashSpeed = 40;
     public float dashPushback = 200;
     private float dashStatus = 0;
     private Vector3 dashDirection;
-    private CharacterController characterController;
+    private CharacterControllerHandler characterController;
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterControllerHandler>();
     }
 
     void Update()
@@ -34,11 +34,12 @@ public class DashController : MonoBehaviour
             dashStatus = dashSpeed;
             dashDirection = movement;
         }
+
         dashStatus -= dashPushback * Time.deltaTime;
 
         if (dashStatus < 0)
             dashStatus = 0;
-        characterController.Move(dashDirection * dashStatus * Time.deltaTime);
 
+        characterController.Move(dashDirection * dashStatus);
     }
 }

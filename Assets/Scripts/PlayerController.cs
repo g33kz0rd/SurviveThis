@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController characterController;
+    private CharacterControllerHandler characterController;
     public GameObject cameraContainer;
     public float speed = 10;
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterControllerHandler>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             movement -= transform.right;
 
-        characterController.Move(movement.normalized * speed * Time.deltaTime);
+        characterController.Move(movement.normalized * speed);
 
         transform.Rotate(transform.up, Input.GetAxis("Mouse X"));
 

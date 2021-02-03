@@ -7,24 +7,26 @@ public class JumpController : MonoBehaviour
     public float jumpSpeed = 8;
     public float gravity = 20;
     private float jumpStatus = 0;
-    private const int MAX_JUMPS = 2;
+    private const int MAXJUMPS = 2;
     private int jumpsLeft = 0;
-    private CharacterController characterController;
+    private CharacterControllerHandler characterController;
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();        
+        characterController = GetComponent<CharacterControllerHandler>();        
     }
 
     void Update()
     {
-        if (characterController.isGrounded)
+        LogsController.Log($"Grounded: {characterController.IsGrounded}");
+
+        if (characterController.IsGrounded)
         {
             jumpStatus = 0;
-            jumpsLeft = MAX_JUMPS;
+            jumpsLeft = MAXJUMPS;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && (characterController.isGrounded || jumpsLeft > 0))
+        if (Input.GetKeyDown(KeyCode.Space) && (characterController.IsGrounded || jumpsLeft > 0))
         {
             jumpsLeft--;
             jumpStatus = jumpSpeed;
@@ -32,7 +34,7 @@ public class JumpController : MonoBehaviour
 
         jumpStatus -= gravity * Time.deltaTime;
 
-        characterController.Move(transform.up * jumpStatus * Time.deltaTime);
+        characterController.Move(transform.up * jumpStatus);
 
     }
 }
