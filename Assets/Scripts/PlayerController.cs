@@ -4,12 +4,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterControllerHandler characterController;
+    private AttackController attack;
     public GameObject cameraContainer;
     public float speed = 10;
 
-    private void Start()
+    private void Awake()
     {
         characterController = GetComponent<CharacterControllerHandler>();
+        attack = GetComponent<AttackController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -26,6 +28,11 @@ public class PlayerController : MonoBehaviour
             movement += transform.right;
         if (Input.GetKey(KeyCode.A))
             movement -= transform.right;
+
+
+
+        if (Input.GetMouseButton(0))
+            attack.Attack();
 
         characterController.Move(movement.normalized * speed);
 

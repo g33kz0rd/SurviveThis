@@ -8,7 +8,7 @@ public class CharacterControllerHandler : MonoBehaviour
     private CharacterController characterController;
     private Vector3 nextMovement;
 
-    public bool IsGrounded { get; set; }
+    public bool IsGrounded { get; private set; }
 
     void Start()
     {

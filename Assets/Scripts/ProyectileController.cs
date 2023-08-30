@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.Collections;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ProyectileController : MonoBehaviour
@@ -8,22 +6,15 @@ public class ProyectileController : MonoBehaviour
     private ProyectileInfo proyectileInfo;
 
     private float currentLife;
-    private float spawnDelay;
 
     public void SetInfo(ProyectileInfo proyectileInfo)
     {
         this.proyectileInfo = proyectileInfo;
         currentLife = proyectileInfo.Life;
-        spawnDelay = proyectileInfo.SpawnDelay;
     }
 
     private void Update()
     {
-        spawnDelay -= Time.deltaTime;
-
-        if (spawnDelay > 0)
-            return;
-
         currentLife -= Time.deltaTime;
 
         if (currentLife < 0)
@@ -51,7 +42,7 @@ public class ProyectileController : MonoBehaviour
             if (cp.otherCollider != null)
             {
                 LogsController.Log($"Proyectile found: {cp.otherCollider.tag}");
-                if (cp.otherCollider.tag != "Enemy")
+                if (cp.otherCollider.CompareTag("Enemy"))
                     continue;
 
                 var hp = cp.otherCollider.gameObject.GetComponent<HealthController>();

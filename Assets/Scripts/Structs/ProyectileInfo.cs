@@ -13,15 +13,14 @@ public struct ProyectileInfo
     [SerializeField]
     private float spawnDelay;
     [SerializeField]
-    private GameObject bulletModel;
+    private GameObject projectileModel;
     [SerializeField]
-    private Transform bulletSpawn;
+    private Transform projectileSpawn;
 
     public float Speed { get => speed; }
     public float Life { get => life; }
     public float SpawnDelay { get => spawnDelay; }
-    public GameObject BulletModel { get => bulletModel; }
-    public Transform BulletSpawn { get => bulletSpawn; }
+    public GameObject ProjectileModel { get => projectileModel; }
+    public Transform ProjectileSpawn { get => projectileSpawn; }
     public float Damage { get => damage; }
-    public GameObject Owner { get; set; }
 }

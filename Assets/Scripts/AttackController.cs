@@ -2,15 +2,15 @@
 
 public class AttackController : MonoBehaviour
 {
-    private GameObject bulletModel;
-    private Transform bulletSpawn;
+    private GameObject projectileModel;
+    private Transform projectileSpawn;
     private float currentCooldown = 0f;
     public WeaponInfo weaponInfo;
 
     private void Awake()
     {
-        bulletModel = weaponInfo.ProyectileInfo.BulletModel;
-        bulletSpawn = weaponInfo.ProyectileInfo.BulletSpawn;
+        projectileModel = weaponInfo.ProyectileInfo.ProjectileModel;
+        projectileSpawn = weaponInfo.ProyectileInfo.ProjectileSpawn;
     }
 
     public void Attack()
@@ -19,21 +19,18 @@ public class AttackController : MonoBehaviour
             return;
 
         currentCooldown = weaponInfo.Cooldown;
-        SpawnBullet();
+        Spawnprojectile();
     }
 
-    private void SpawnBullet()
+    private void Spawnprojectile()
     {
-        var bullet = Instantiate(bulletModel, bulletSpawn.position, bulletSpawn.rotation);
-        var proyectileController = bullet.AddComponent<ProyectileController>();
+        var projectile = Instantiate(projectileModel, projectileSpawn.position, projectileSpawn.rotation);
+        var proyectileController = projectile.AddComponent<ProyectileController>();
         proyectileController.SetInfo(weaponInfo.ProyectileInfo);
     }
 
     private void Update()
     {
         currentCooldown -= Time.deltaTime;
-
-        if (Input.GetMouseButton(0))
-            Attack();
     }
 }
