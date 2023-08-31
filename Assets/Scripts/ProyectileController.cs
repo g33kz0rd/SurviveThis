@@ -13,11 +13,6 @@ public class ProyectileController : MonoBehaviour
         currentLife = proyectileInfo.Life;
     }
 
-    private void Awake()
-    {
-        Debug.Log($"Is trigger: {transform.GetComponent<SphereCollider>().isTrigger}");
-    }
-
     private void Update()
     {
 
@@ -40,7 +35,6 @@ public class ProyectileController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        LogsController.Log($"Proyectile found an {collider.tag}");
         if (collider.CompareTag("Player"))
             return;
 

@@ -25,7 +25,7 @@ public class AttackController : MonoBehaviour
     private void Spawnprojectile()
     {
         var projectile = Instantiate(projectileModel, projectileSpawn.position, projectileSpawn.rotation);
-        var proyectileController = projectile.AddComponent<ProyectileController>();
+        var proyectileController = projectile.GetComponent<ProyectileController>();
         proyectileController.SetInfo(weaponInfo.ProyectileInfo);
     }
 

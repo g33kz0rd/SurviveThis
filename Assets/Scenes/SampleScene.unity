@@ -810,7 +810,7 @@ MonoBehaviour:
   weaponInfo:
     cooldown: 0.1
     proyectileInfo:
-      damage: 7
+      damage: 23
       speed: 50
       life: 10
       spawnDelay: 0
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   - {fileID: 1285869683}
   - {fileID: 1457216653}
   spawnCooldown: 2
+  maxEnemies: 10
 --- !u!4 &1793881852
 Transform:
   m_ObjectHideFlags: 0
