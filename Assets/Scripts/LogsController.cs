@@ -33,6 +33,7 @@ public class LogsController : MonoBehaviour
 
     static public void Log(string what, int duration = 30)
     {
+        Debug.Log(what);
         var log = logs.FirstOrDefault(x => x.log == what);
 
         if (log != null)

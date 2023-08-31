@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     private CharacterControllerHandler characterController;
     private AttackController attack;
-    public GameObject player;
+    private GameObject player;
     public float speed = 10;
     public float attackRange = 5;
 
@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     {
         characterController = GetComponent<CharacterControllerHandler>();
         attack = GetComponent<AttackController>();
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
@@ -21,12 +22,9 @@ public class EnemyController : MonoBehaviour
 
         if (distance < attackRange)
         {
-            Debug.Log("Attack!");
             attack.Attack();
             return;
         }
-
-        Debug.Log("Move!");
 
         Vector3 movement = player.transform.position - transform.position;
 

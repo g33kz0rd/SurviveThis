@@ -5,13 +5,18 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField]
     public float healthPoints;
-    public void DoDamage(ProyectileInfo proyectile)
+    public void TakeDamage(ProyectileInfo proyectile)
     {
         healthPoints -= proyectile.Damage;
 
         if (healthPoints > 0)
             return;
 
-        LogsController.Log($"{gameObject.name} died.");
+        EndLife();
+    }
+
+    private void EndLife()
+    {
+        Destroy(gameObject);
     }
 }

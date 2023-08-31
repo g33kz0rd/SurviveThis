@@ -13,8 +13,15 @@ public class ProyectileController : MonoBehaviour
         currentLife = proyectileInfo.Life;
     }
 
+    private void Awake()
+    {
+        Debug.Log($"Is trigger: {transform.GetComponent<SphereCollider>().isTrigger}");
+    }
+
     private void Update()
     {
+
+
         currentLife -= Time.deltaTime;
 
         if (currentLife < 0)
@@ -31,25 +38,14 @@ public class ProyectileController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        List<ContactPoint> cps = new List<ContactPoint>();
+        LogsController.Log($"Proyectile found an {collider.tag}");
+        if (collider.CompareTag("Player"))
+            return;
 
-        collision.GetContacts(cps);
-
-        foreach(var cp in cps)
-        {
-            if (cp.otherCollider != null)
-            {
-                LogsController.Log($"Proyectile found: {cp.otherCollider.tag}");
-                if (cp.otherCollider.CompareTag("Enemy"))
-                    continue;
-
-                var hp = cp.otherCollider.gameObject.GetComponent<HealthController>();
-                hp.DoDamage(proyectileInfo);
-                break;
-            }
-        }
+        var hp = collider.gameObject.GetComponent<HealthController>();
+        hp.TakeDamage(proyectileInfo);
 
         EndLife();
     }
