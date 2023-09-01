@@ -816,6 +816,7 @@ MonoBehaviour:
       spawnDelay: 0
       projectileModel: {fileID: 1876588494638826514, guid: ad858ad40d42bf64eb220a64c3b19ac4, type: 3}
       projectileSpawn: {fileID: 1063147588}
+      target: Enemy
 --- !u!114 &954879578
 MonoBehaviour:
   m_ObjectHideFlags: 0

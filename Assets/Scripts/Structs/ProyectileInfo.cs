@@ -16,6 +16,8 @@ public struct ProyectileInfo
     private GameObject projectileModel;
     [SerializeField]
     private Transform projectileSpawn;
+    [SerializeField]
+    private string target;
 
     public float Speed { get => speed; }
     public float Life { get => life; }
@@ -23,4 +25,5 @@ public struct ProyectileInfo
     public GameObject ProjectileModel { get => projectileModel; }
     public Transform ProjectileSpawn { get => projectileSpawn; }
     public float Damage { get => damage; }
+    public string Target { get => target; }
 }

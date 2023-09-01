@@ -35,7 +35,7 @@ public class ProyectileController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        if (!collider.CompareTag(proyectileInfo.Target))
             return;
 
         var hp = collider.gameObject.GetComponent<HealthController>();

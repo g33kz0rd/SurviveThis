@@ -103,6 +103,7 @@ MonoBehaviour:
       spawnDelay: 0.2
       projectileModel: {fileID: 2056954495172327235, guid: f9fe57e381a013c45ac057b2958fa78f, type: 3}
       projectileSpawn: {fileID: 5812523126822038802}
+      target: Player
 --- !u!114 &5812523126750716071
 MonoBehaviour:
   m_ObjectHideFlags: 0
