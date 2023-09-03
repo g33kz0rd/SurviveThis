@@ -10,13 +10,16 @@ public class ProyectileController : MonoBehaviour
     public void SetInfo(ProyectileInfo proyectileInfo)
     {
         this.proyectileInfo = proyectileInfo;
+        OnEnable();
+    }
+
+    private void OnEnable()
+    {
         currentLife = proyectileInfo.Life;
     }
 
     private void Update()
     {
-
-
         currentLife -= Time.deltaTime;
 
         if (currentLife < 0)

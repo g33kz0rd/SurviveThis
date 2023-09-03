@@ -13,6 +13,11 @@ public class AttackController : MonoBehaviour
         projectileSpawn = weaponInfo.ProyectileInfo.ProjectileSpawn;
     }
 
+    private void OnEnable()
+    {
+        currentCooldown = 0;
+    }
+
     public void Attack()
     {
         if (currentCooldown > 0)

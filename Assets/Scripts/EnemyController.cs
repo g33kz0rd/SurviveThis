@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,7 +7,6 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     public float speed = 10;
     public float attackRange = 5;
-    private GameDirectorController director;
 
     private void Awake()
     {
@@ -37,15 +34,5 @@ public class EnemyController : MonoBehaviour
         Vector3 lookAt = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
 
         transform.LookAt(lookAt);
-    }
-
-    internal void SetDirector(GameDirectorController gameDirectorController)
-    {
-        director = gameDirectorController;
-    }
-
-    private void OnDestroy()
-    {
-        director.IsDead(gameObject);
     }
 }

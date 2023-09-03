@@ -3,8 +3,17 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    public event EventHandler<OnDeadEventArgs> OnDead;
+
     [SerializeField]
-    public float healthPoints;
+    public float MaxHealth;
+    private float healthPoints;
+
+    private void OnEnable()
+    {
+        healthPoints = MaxHealth;
+    }
+
     public void TakeDamage(ProyectileInfo proyectile)
     {
         healthPoints -= proyectile.Damage;
@@ -12,11 +21,12 @@ public class HealthController : MonoBehaviour
         if (healthPoints > 0)
             return;
 
-        EndLife();
+        OnDead?.Invoke(this, new OnDeadEventArgs() { gameObject = gameObject, healthPoints = healthPoints });
     }
+}
 
-    private void EndLife()
-    {
-        Destroy(gameObject);
-    }
+public class OnDeadEventArgs
+{
+    public GameObject gameObject;
+    public float healthPoints;
 }

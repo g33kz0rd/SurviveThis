@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5848f129887b06349bef388ad19606ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
+  MaxHealth: 100
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,8 +1383,8 @@ MonoBehaviour:
   - {fileID: 2048938962}
   - {fileID: 1285869683}
   - {fileID: 1457216653}
-  spawnCooldown: 2
-  maxEnemies: 10
+  spawnCooldown: 0.1
+  maxEnemies: 2
 --- !u!4 &1793881852
 Transform:
   m_ObjectHideFlags: 0
