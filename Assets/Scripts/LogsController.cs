@@ -8,12 +8,8 @@ public class LogsController : MonoBehaviour
     static private List<LogTime> logs = new List<LogTime>();
     static private GUIStyle style;
 
-    private void Update()
+    private void Awake()
     {
-        if (style != null)
-            return;
-
-
         style = new GUIStyle()
         {
             font = Font.CreateDynamicFontFromOSFont("Consolas", 14)
@@ -25,15 +21,14 @@ public class LogsController : MonoBehaviour
         for (int i = 0; i < logs.Count; i++)
         {
             GUI.TextField(new Rect(0, 20 * i, logs[i].log.Length * 7, 20), $"{logs[i].log}", style);
-            logs[i].time -= 16;
+            logs[i].time -= Time.deltaTime;
         }
 
         logs = logs.Where(x => x.time > 0).ToList();
     }
 
-    static public void Log(string what, int duration = 30)
+    static public void Log(string what, float duration = 1)
     {
-        Debug.Log(what);
         var log = logs.FirstOrDefault(x => x.log == what);
 
         if (log != null)
@@ -48,7 +43,7 @@ public class LogsController : MonoBehaviour
 
     private class LogTime
     {
-        public int time;
+        public float time;
         public string log;
     }
 }
