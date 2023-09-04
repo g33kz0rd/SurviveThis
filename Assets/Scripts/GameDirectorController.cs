@@ -3,14 +3,27 @@ using UnityEngine;
 
 public class GameDirectorController : MonoBehaviour
 {
-    List<GameObject> unusedEnemies = new List<GameObject>();
-    List<GameObject> enemies = new List<GameObject>();
+    public static GameDirectorController GameDirector;
+
+    private readonly List<GameObject> unusedEnemies = new List<GameObject>();
+    private readonly List<GameObject> enemies = new List<GameObject>();
+    private readonly List<SpawnerController> spawners = new List<SpawnerController>();
 
     public List<GameObject> enemyPrefabs;
-    public List<Transform> spawners;
     public float spawnCooldown;
     private float currentCooldown = 0;
-    public int maxEnemies = 2;
+    public int maxEnemies = 15;
+
+    private void Awake()
+    {
+        if (!GameDirector)
+        {
+            GameDirector = this;
+            return;
+        }
+        for (int i = 0; i < 25; i++) LogsController.Log("There cannot be 2 GameDirectors!");
+        Destroy(this);
+    }
 
 
     void Update()
@@ -49,7 +62,7 @@ public class GameDirectorController : MonoBehaviour
 
     private Vector3 GetSpawnPosition()
     {
-        return spawners[Random.Range(0, spawners.Count)].position;
+        return spawners[Random.Range(0, spawners.Count)].transform.position;
     }
 
     private GameObject RespawnEnemy(GameObject enemy)
@@ -65,5 +78,10 @@ public class GameDirectorController : MonoBehaviour
         e.gameObject.SetActive(false);
         enemies.Remove(e.gameObject);
         unusedEnemies.Add(e.gameObject);
+    }
+
+    internal void AddSpawner(SpawnerController spawnerController)
+    {
+        spawners.Add(spawnerController);
     }
 }
