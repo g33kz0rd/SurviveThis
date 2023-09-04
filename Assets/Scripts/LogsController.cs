@@ -29,10 +29,13 @@ public class LogsController : MonoBehaviour
 
     static public void Log(string what, float duration = 1)
     {
-        var log = logs.FirstOrDefault(x => x.log == what);
+        var log = logs.FirstOrDefault(x => x.log.Split(':')[0] == what.Split(':')[0]);
 
         if (log != null)
+        {
+            log.log = what;
             log.time = duration;
+        }
         else
             logs.Add(new LogTime()
             {
