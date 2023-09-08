@@ -37,11 +37,13 @@ public class LogsController : MonoBehaviour
             log.time = duration;
         }
         else
+        {
             logs.Add(new LogTime()
             {
                 log = what,
                 time = duration,
             });
+        }
     }
 
     private class LogTime
